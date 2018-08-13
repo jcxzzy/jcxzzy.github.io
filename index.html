@@ -274,7 +274,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jcxzzy.github.io/2018/08/12/超详细的使用Github+Hexo搭建属于自己的博客/">
+    <link itemprop="mainEntityOfPage" href="http://jcxzzy.github.io/2018/08/12/firstblog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小小马里奥">
@@ -293,7 +293,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/12/超详细的使用Github+Hexo搭建属于自己的博客/" itemprop="url">超详细的使用Github+Hexo搭建属于自己的博客</a></h1>
+                <a class="post-title-link" href="/2018/08/12/firstblog/" itemprop="url">超详细的使用Github+Hexo搭建属于自己的博客</a></h1>
         
 
         <div class="post-meta">
@@ -382,7 +382,7 @@
 <p>2， Node.js：<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a>下载安装程序</p>
 <p>打开cmd命令行(win+r 输入cmd回车)分别执行</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br><span class="line">git --version</span><br></pre></td></tr></table></figure>
-<p>得到如下相对应的版本信息说明安装成功<br><img src="https://img-blog.csdn.net/2018081212091262?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjU4ODMzMg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"> </p>
+<p>得到如下相对应的版本信息说明安装成功<br><img src="/2018/08/12/firstblog/1.png" alt="这里写图片描述"> </p>
 <h2 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h2><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>打开Git Bash（在任意文件夹下单击右键即可看到Git Bash），输入以下命令安装Hexo</p>
 <pre><code class="bash">$ npm install -g hexo-cli
 </code></pre>
@@ -400,13 +400,13 @@
 <h2 id="启动服务器"><a href="#启动服务器" class="headerlink" title="启动服务器"></a>启动服务器</h2><p>由于还没有配置Github，所以我们先部署到本地服务器</p>
 <pre><code class="bash">$ hexo s
 </code></pre>
-<p>在浏览器上输入<code>http://localhost:4000/</code> 即可看到下图<br><img src="https://img-blog.csdn.net/20180812123734836?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjU4ODMzMg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"><br>若没有出现也不要着急可能是你的4000的端口被占用，可以重设端口</p>
+<p>在浏览器上输入<code>http://localhost:4000/</code> 即可看到下图<br><img src="/2018/08/12/firstblog/2.png" alt="这里写图片描述"><br>若没有出现也不要着急可能是你的4000的端口被占用，可以重设端口</p>
 <pre><code class="bash">$ hexo -p 5000 server
 </code></pre>
 <p>打开浏览器输入<code>http://localhost:5000/</code> 即可看到你的初始博客</p>
-<h2 id="Github配置"><a href="#Github配置" class="headerlink" title="Github配置"></a>Github配置</h2><h3 id="注册Github账号"><a href="#注册Github账号" class="headerlink" title="注册Github账号"></a>注册Github账号</h3><p>进入<a href="https://github.com" target="_blank" rel="noopener">Github官网</a><br>点击<img src="https://img-blog.csdn.net/20180812125340298?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjU4ODMzMg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述">进入注册界面<br>注意：注册Github的时候一定要选择一个合适的名字，因为后来博客网站的域名也会用到这个名字。虽然Github用户名支持后期修改，但是还是会带来很多不必要的麻烦。</p>
-<h3 id="创建Github仓库"><a href="#创建Github仓库" class="headerlink" title="创建Github仓库"></a>创建Github仓库</h3><p>创建与你的Github用户名相对应的Github Page仓库，格式必须是username.github.io。（如图）<br><img src="https://img-blog.csdn.net/2018081213585591?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjU4ODMzMg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<h3 id="建立关联"><a href="#建立关联" class="headerlink" title="建立关联"></a>建立关联</h3><p>进入你刚创建的仓库，复制仓库的地址<br><img src="https://img-blog.csdn.net/20180812140822277?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjU4ODMzMg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"><br><img src="https://img-blog.csdn.net/20180812140848290?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjU4ODMzMg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"><br>打开hexo文件夹下的_config.yml文件，拉倒最下面，修改deploy为以下代码，repository后面的是你的仓库地址</p>
+<h2 id="Github配置"><a href="#Github配置" class="headerlink" title="Github配置"></a>Github配置</h2><h3 id="注册Github账号"><a href="#注册Github账号" class="headerlink" title="注册Github账号"></a>注册Github账号</h3><p>进入<a href="https://github.com" target="_blank" rel="noopener">Github官网</a><br>点击<img src="/2018/08/12/firstblog/3.png" alt="这里写图片描述">进入注册界面<br>注意：注册Github的时候一定要选择一个合适的名字，因为后来博客网站的域名也会用到这个名字。虽然Github用户名支持后期修改，但是还是会带来很多不必要的麻烦。</p>
+<h3 id="创建Github仓库"><a href="#创建Github仓库" class="headerlink" title="创建Github仓库"></a>创建Github仓库</h3><p>创建与你的Github用户名相对应的Github Page仓库，格式必须是username.github.io。（如图）<br><img src="/2018/08/12/firstblog/4.png" alt="这里写图片描述"></p>
+<h3 id="建立关联"><a href="#建立关联" class="headerlink" title="建立关联"></a>建立关联</h3><p>进入你刚创建的仓库，复制仓库的地址<br><img src="/2018/08/12/firstblog/5.png" alt="这里写图片描述"><br><img src="/2018/08/12/firstblog/6.png" alt="这里写图片描述"><br>打开hexo文件夹下的_config.yml文件，拉倒最下面，修改deploy为以下代码，repository后面的是你的仓库地址</p>
 <pre><code class="bash">deploy:
   <span class="built_in">type</span>: git
   repo: git@github.com:jcxzzy/jcxzzy.github.io.git
