@@ -81,16 +81,19 @@
 
 
 
-<meta name="description" content="想在自己的代码里找出一个错误是十分困难的。而当你认为你的代码没有错误时，那就更难了。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="小小马里奥的博客">
-<meta property="og:url" content="http://jcxzzy.github.io/index.html">
+<meta name="description" content="&amp;nbsp; 概要 上一章，我们学习了Collection的架构。这一章开始，我们对Collection的具体实现类进行讲解；首先，讲解List，而List中ArrayList又最为常用。因此，本章我们讲解ArrayList。先对ArrayList有个整体认识，再学习它的源码，最后再通过例子来学习如何使用它。内容包括：第1部分 ArrayList简介第2部分 ArrayList数据结构第3部分 A">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[转]Java 集合之 ArrayList详细介绍(源码解析)和使用示例">
+<meta property="og:url" content="http://jcxzzy.github.io/2018/11/27/转-Java-集合之-ArrayList详细介绍-源码解析-和使用示例/index.html">
 <meta property="og:site_name" content="小小马里奥的博客">
-<meta property="og:description" content="想在自己的代码里找出一个错误是十分困难的。而当你认为你的代码没有错误时，那就更难了。">
+<meta property="og:description" content="&amp;nbsp; 概要 上一章，我们学习了Collection的架构。这一章开始，我们对Collection的具体实现类进行讲解；首先，讲解List，而List中ArrayList又最为常用。因此，本章我们讲解ArrayList。先对ArrayList有个整体认识，再学习它的源码，最后再通过例子来学习如何使用它。内容包括：第1部分 ArrayList简介第2部分 ArrayList数据结构第3部分 A">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://images0.cnblogs.com/blog/497634/201401/272343457973489.jpg">
+<meta property="og:updated_time" content="2018-11-27T01:53:58.728Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="小小马里奥的博客">
-<meta name="twitter:description" content="想在自己的代码里找出一个错误是十分困难的。而当你认为你的代码没有错误时，那就更难了。">
+<meta name="twitter:title" content="[转]Java 集合之 ArrayList详细介绍(源码解析)和使用示例">
+<meta name="twitter:description" content="&amp;nbsp; 概要 上一章，我们学习了Collection的架构。这一章开始，我们对Collection的具体实现类进行讲解；首先，讲解List，而List中ArrayList又最为常用。因此，本章我们讲解ArrayList。先对ArrayList有个整体认识，再学习它的源码，最后再通过例子来学习如何使用它。内容包括：第1部分 ArrayList简介第2部分 ArrayList数据结构第3部分 A">
+<meta name="twitter:image" content="https://images0.cnblogs.com/blog/497634/201401/272343457973489.jpg">
 
 
 
@@ -120,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://jcxzzy.github.io/"/>
+  <link rel="canonical" href="http://jcxzzy.github.io/2018/11/27/转-Java-集合之-ArrayList详细介绍-源码解析-和使用示例/"/>
 
 
 
 
 
-  <title>小小马里奥的博客</title>
+  <title>[转]Java 集合之 ArrayList详细介绍(源码解析)和使用示例 | 小小马里奥的博客</title>
   
 
 
@@ -155,8 +158,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -259,210 +261,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jcxzzy.github.io/2018/11/27/[转]Java中的static关键字解析/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="小小马里奥">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/zy.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小小马里奥的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/27/[转]Java中的static关键字解析/" itemprop="url">[转]Java中的static关键字解析</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-27T10:05:45+08:00">
-                2018-11-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2,846
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  11
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p style="text-align: left;">　　static关键字是很多朋友在编写代码和阅读代码时碰到的比较难以理解的一个关键字，也是各大公司的面试官喜欢在面试时问到的知识点之一。下面就先讲述一下static关键字的用法和平常容易误解的地方，最后列举了一些面试笔试中常见的关于static的考题。以下是本文的目录大纲：</p><br><p style="text-align: left;">　　一.static关键字的用途</p><br><p style="text-align: left;">　　二.static关键字的误区</p><br><p style="text-align: left;">　　三.常见的笔试面试题</p><br><p style="text-align: left;">　　若有不正之处，希望谅解并欢迎批评指正。</p><br><h2 style="text-align: left;">一.static关键字的用途</h2><br><p style="text-align: left;">　　在《Java编程思想》P86页有这样一段话：</p><br><p style="text-align: left;">　　<span style="color: #0000ff;">“static方法就是没有this的方法。在static方法内部不能调用非静态方法，反过来是可以的。而且可以在没有创建任何对象的前提下，仅仅通过类本身来调用static方法。这实际上正是static方法的主要用途。”</span></p><br><p style="text-align: left;"><span style="color: #0000ff;">　　<span style="color: #000000;">这段话虽然只是说明了static方法的特殊之处，但是可以看出static关键字的基本作用，简而言之，一句话来描述就是：</span></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;">　　<span style="color: #ff0000;">方便在没有创建对象的情况下来进行调用（方法/变量）。</span></span></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;">　　<span style="color: #000000;">很显然，被static关键字修饰的方法或者变量不需要依赖于对象来进行访问，只要类被加载了，就可以通过类名去进行访问。</span></span></span></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">　　static可以用来修饰类的成员方法、类的成员变量，另外可以编写static代码块来优化程序性能。</span></span></span></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">1）static方法</span></span></span></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">　　static方法一般称作静态方法，由于静态方法不依赖于任何对象就可以进行访问，因此对于静态方法来说，是没有this的，因为它不依附于任何对象，既然都没有对象，就谈不上this了。并且由于这个特性，在静态方法中不能访问类的非静态成员变量和非静态成员方法，因为非静态成员方法/变量都是必须依赖具体的对象才能够被调用。</span></span></span></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">　　但是要注意的是，虽然在静态方法中不能访问非静态成员方法和非静态成员变量，但是在非静态成员方法中是可以访问静态成员方法/变量的。举个简单的例子：</span></span></span></span></p><br><p style="text-align: left;"><img src="https://images0.cnblogs.com/i/288799/201406/201612439117678.jpg" alt=""></p><br><p style="text-align: left;">　　在上面的代码中，由于print2方法是独立于对象存在的，可以直接用过类名调用。假如说可以在静态方法中访问非静态方法/变量的话，那么如果在main方法中有下面一条语句：</p><br><p style="text-align: left;">　　MyObject.print2();</p><br><p style="text-align: left;">　　此时对象都没有，str2根本就不存在，所以就会产生矛盾了。同样对于方法也是一样，由于你无法预知在print1方法中是否访问了非静态成员变量，所以也禁止在静态成员方法中访问非静态成员方法。</p><br><p style="text-align: left;">　　而对于非静态成员方法，它访问静态成员方法/变量显然是毫无限制的。</p><br><p style="text-align: left;">　　因此，如果说想在不创建对象的情况下调用某个方法，就可以将这个方法设置为static。我们最常见的static方法就是main方法，至于为什么main方法必须是static的，现在就很清楚了。因为程序在执行main方法的时候没有创建任何对象，因此只有通过类名来访问。</p><br><p style="text-align: left;">　　<span style="color: #ff0000;">另外记住，关于构造器是否是static方法可参考：<a href="http://blog.csdn.net/qq_17864929/article/details/48006835" target="_blank" rel="noopener">http://blog.csdn.net/qq_17864929/article/details/48006835</a></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">2）static变量</span></span></span></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">　　static变量也称作静态变量，静态变量和非静态变量的区别是：静态变量被所有的对象所共享，在内存中只有一个副本，它当且仅当在类初次加载时会被初始化。而非静态变量是对象所拥有的，在创建对象的时候被初始化，存在多个副本，各个对象拥有的副本互不影响。</span></span></span></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">　　static成员变量的初始化顺序按照定义的顺序进行初始化。</span></span></span></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">3）static代码块</span></span></span></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">　　static关键字还有一个比较关键的作用就是 用来形成静态代码块以优化程序性能。static块可以置于类中的任何地方，类中可以有多个static块。在类初次被加载的时候，会按照static块的顺序来执行每个static块，并且只会执行一次。</span></span></span></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">　　为什么说static块可以用来优化程序性能，是因为它的特性:只会在类加载的时候执行一次。下面看个例子:</span></span></span></span></p>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Person&#123;</span><br><span class="line">    private Date birthDate;</span><br><span class="line">     </span><br><span class="line">    public Person(Date birthDate) &#123;</span><br><span class="line">        this.birthDate = birthDate;</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    boolean isBornBoomer() &#123;</span><br><span class="line">        Date startDate = Date.valueOf(&quot;1946&quot;);</span><br><span class="line">        Date endDate = Date.valueOf(&quot;1964&quot;);</span><br><span class="line">        return birthDate.compareTo(startDate)&gt;=0 &amp;&amp; birthDate.compareTo(endDate) &lt; 0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">　　isBornBoomer是用来这个人是否是1946-1964年出生的，而每次isBornBoomer被调用的时候，都会生成startDate和birthDate两个对象，造成了空间浪费，如果改成这样效率会更好：</span></span></span></span></p>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Person&#123;</span><br><span class="line">    private Date birthDate;</span><br><span class="line">    private static Date startDate,endDate;</span><br><span class="line">    static&#123;</span><br><span class="line">        startDate = Date.valueOf(&quot;1946&quot;);</span><br><span class="line">        endDate = Date.valueOf(&quot;1964&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    public Person(Date birthDate) &#123;</span><br><span class="line">        this.birthDate = birthDate;</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    boolean isBornBoomer() &#123;</span><br><span class="line">        return birthDate.compareTo(startDate)&gt;=0 &amp;&amp; birthDate.compareTo(endDate) &lt; 0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">　　因此，很多时候会将一些只需要进行一次的初始化操作都放在static代码块中进行。</span></span></span></span></p><br><h2 style="text-align: left;">二.static关键字的误区</h2><br><p style="text-align: left;">1.static关键字会改变类中成员的访问权限吗？</p><br><p style="text-align: left;">　　有些初学的朋友会将java中的static与C/C++中的static关键字的功能混淆了。在这里只需要记住一点：与C/C++中的static不同，Java中的static关键字不会影响到变量或者方法的作用域。在Java中能够影响到访问权限的只有private、public、protected（包括包访问权限）这几个关键字。看下面的例子就明白了：</p><br><p style="text-align: left;"><img src="https://images0.cnblogs.com/i/288799/201406/201658474265949.jpg" alt=""></p><br><p style="text-align: left;">　　提示错误”Person.age 不可视”，这说明static关键字并不会改变变量和方法的访问权限。</p><br><p style="text-align: left;">2.能通过this访问静态成员变量吗？</p><br><p style="text-align: left;">　　虽然对于静态方法来说没有this，那么在非静态方法中能够通过this访问静态成员变量吗？先看下面的一个例子，这段代码输出的结果是什么？</p>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class Main &#123;　　</span><br><span class="line">    static int value = 33;</span><br><span class="line"> </span><br><span class="line">    public static void main(String[] args) throws Exception&#123;</span><br><span class="line">        new Main().printValue();</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    private void printValue()&#123;</span><br><span class="line">        int value = 3;</span><br><span class="line">        System.out.println(this.value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出结果：</p>
-
-<blockquote>
-<p>33</p>
-</blockquote>
-<p>　　这里面主要考察队this和static的理解。this代表什么？this代表当前对象，那么通过new Main()来调用printValue的话，当前对象就是通过new Main()生成的对象。而static变量是被对象所享有的，因此在printValue中的this.value的值毫无疑问是33。在printValue方法内部的value是局部变量，根本不可能与this关联，所以输出结果是33。在这里永远要记住一点：静态成员变量虽然独立于对象，但是不代表不可以通过对象去访问，所有的静态方法和静态变量都可以通过对象访问（只要访问权限足够）。</p><br><p style="text-align: left;">3.static能作用于局部变量么？</p><br><p style="text-align: left;">　　在C/C++中static是可以作用域局部变量的，但是在Java中切记：<span style="color: #ff0000;">static是不允许用来修饰局部变量</span>。不要问为什么，这是Java语法的规定。</p><br><p style="text-align: left;">　　具体原因可以参考这篇博文的讨论：<a href="http://www.debugease.com/j2se/178932.html" target="_blank" rel="noopener">http://www.debugease.com/j2se/178932.html</a></p><br><h2 style="text-align: left;">三.常见的笔试面试题</h2><br><p style="text-align: left;">　　下面列举一些面试笔试中经常遇到的关于static关键字的题目，仅供参考，如有补充欢迎下方留言。</p><br><p style="text-align: left;">1.下面这段代码的输出结果是什么？</p>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public class Test extends Base&#123;</span><br><span class="line"> </span><br><span class="line">    static&#123;</span><br><span class="line">        System.out.println(&quot;test static&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    public Test()&#123;</span><br><span class="line">        System.out.println(&quot;test constructor&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        new Test();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">class Base&#123;</span><br><span class="line">     </span><br><span class="line">    static&#123;</span><br><span class="line">        System.out.println(&quot;base static&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    public Base()&#123;</span><br><span class="line">        System.out.println(&quot;base constructor&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出结果：</p>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">base static</span><br><span class="line">test static</span><br><span class="line">base constructor</span><br><span class="line">test constructor</span><br></pre></td></tr></table></figure>
-<p>　　至于为什么是这个结果，我们先不讨论，先来想一下这段代码具体的执行过程，在执行开始，先要寻找到main方法，因为main方法是程序的入口，但是在执行main方法之前，必须先加载Test类，而在加载Test类的时候发现Test类继承自Base类，因此会转去先加载Base类，在加载Base类的时候，发现有static块，便执行了static块。在Base类加载完成之后，便继续加载Test类，然后发现Test类中也有static块，便执行static块。在加载完所需的类之后，便开始执行main方法。在main方法中执行new Test()的时候会先调用父类的构造器，然后再调用自身的构造器。因此，便出现了上面的输出结果。</p><br><p>2.这段代码的输出结果是什么？</p>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">public class Test &#123;</span><br><span class="line">    Person person = new Person(&quot;Test&quot;);</span><br><span class="line">    static&#123;</span><br><span class="line">        System.out.println(&quot;test static&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    public Test() &#123;</span><br><span class="line">        System.out.println(&quot;test constructor&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        new MyClass();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">class Person&#123;</span><br><span class="line">    static&#123;</span><br><span class="line">        System.out.println(&quot;person static&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    public Person(String str) &#123;</span><br><span class="line">        System.out.println(&quot;person &quot;+str);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">class MyClass extends Test &#123;</span><br><span class="line">    Person person = new Person(&quot;MyClass&quot;);</span><br><span class="line">    static&#123;</span><br><span class="line">        System.out.println(&quot;myclass static&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    public MyClass() &#123;</span><br><span class="line">        System.out.println(&quot;myclass constructor&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出结果：</p>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">test static</span><br><span class="line">myclass static</span><br><span class="line">person static</span><br><span class="line">person Test</span><br><span class="line">test constructor</span><br><span class="line">person MyClass</span><br><span class="line">myclass constructor</span><br></pre></td></tr></table></figure>
-<p>　　类似地，我们还是来想一下这段代码的具体执行过程。首先加载Test类，因此会执行Test类中的static块。接着执行new MyClass()，而MyClass类还没有被加载，因此需要加载MyClass类。在加载MyClass类的时候，发现MyClass类继承自Test类，但是由于Test类已经被加载了，所以只需要加载MyClass类，那么就会执行MyClass类的中的static块。在加载完之后，就通过构造器来生成对象。而在生成对象的时候，必须先初始化父类的成员变量，因此会执行Test中的Person person = new Person()，而Person类还没有被加载过，因此会先加载Person类并执行Person类中的static块，接着执行父类的构造器，完成了父类的初始化，然后就来初始化自身了，因此会接着执行MyClass中的Person person = new Person()，最后执行MyClass的构造器。</p><br><p>3.这段代码的输出结果是什么？</p>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class Test &#123;</span><br><span class="line">     </span><br><span class="line">    static&#123;</span><br><span class="line">        System.out.println(&quot;test static 1&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">         </span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    static&#123;</span><br><span class="line">        System.out.println(&quot;test static 2&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出结果：</p>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">test static 1</span><br><span class="line">test static 2</span><br></pre></td></tr></table></figure>
-<p></p><p>　　虽然在main方法中没有任何语句，但是还是会输出，原因上面已经讲述过了。另外，static块可以出现类中的任何地方（只要不是方法内部，记住，任何方法内部都不行），并且执行是按照static块的顺序执行的。</p><p></p>
-<p></p><p style="text-align: left;">　　参考资料：</p><p></p>
-<p></p><p style="text-align: left;">　　<a href="http://lavasoft.blog.51cto.com/62575/18771/" target="_blank">http://lavasoft.blog.51cto.com/62575/18771/</a></p><p></p>
-<p></p><p style="text-align: left;">　　<a href="http://www.51cto.com/specbook/24/35011.htm" target="_blank">http://www.51cto.com/specbook/24/35011.htm</a></p><p></p>
-<p></p><p style="text-align: left;">　　<a href="http://blog.csdn.net/zhu_apollo/article/details/1888219" target="_blank">http://blog.csdn.net/zhu_apollo/article/details/1888219</a></p><p></p>
-<p></p><p style="text-align: left;">　　<a href="http://blog.sina.com.cn/s/blog_70b845780100n9zz.html" target="_blank">http://blog.sina.com.cn/s/blog_70b845780100n9zz.html</a></p><p></p>
-<p></p><p style="text-align: left;">　　<a href="http://hi.baidu.com/yuiezt/item/b71ff5fbfe9c385cc8f3370d" target="_blank">http://hi.baidu.com/yuiezt/item/b71ff5fbfe9c385cc8f3370d</a></p><p></p>
-<p></p><p style="text-align: left;">　　<a href="http://bbs.csdn.net/topics/330251070" target="_blank">http://bbs.csdn.net/topics/330251070</a></p><p></p>
-<p></p><p style="text-align: left;">　　<a href="http://yezixingchen.iteye.com/blog/1597186" target="_blank">http://yezixingchen.iteye.com/blog/1597186</a></p><p></p>
-<p></p><p style="text-align: left;">　　《Java编程思想》</p><p></p>
-<p>转载来源：<a href="http://www.cnblogs.com/dolphin0520/" target="_blank" rel="noopener">http://www.cnblogs.com/dolphin0520/</a>  </p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-	<div>
-      
-    </div>
-	
-	<div>
-      
-    </div>
-	
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -492,9 +293,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/27/转-Java-集合之-ArrayList详细介绍-源码解析-和使用示例/" itemprop="url">[转]Java 集合之 ArrayList详细介绍(源码解析)和使用示例</a></h1>
+          <h1 class="post-title" itemprop="name headline">[转]Java 集合之 ArrayList详细介绍(源码解析)和使用示例</h1>
         
 
         <div class="post-meta">
@@ -525,6 +324,11 @@
           
           
 
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
           
 
           
@@ -575,9 +379,7 @@
       
 
       
-        
-          
-            <p><div id="cnblogs_post_body" class="blogpost-body"><p>&nbsp;</p></div></p>
+        <p><div id="cnblogs_post_body" class="blogpost-body"><p>&nbsp;</p></div></p>
 <p></p><h3><strong><span style="font-family: 黑体; font-size: 18pt; line-height: 1.5;">概要</span></strong></h3><p></p>
 <p><span style="font-size: 16px; color: #000000;">上一章，我们学习了Collection的架构。这一章开始，我们对Collection的具体实现类进行讲解；首先，讲解List，而List中ArrayList又最为常用。因此，本章我们讲解ArrayList。先对ArrayList有个整体认识，再学习它的源码，最后再通过例子来学习如何使用它。内容包括：<br><a href="#a1">第1部分 ArrayList简介</a><br><a href="#a2">第2部分 ArrayList数据结构</a><br><a href="#a3">第3部分 ArrayList源码解析(基于JDK1.6.0_45)</a><br><span><a href="#a4">第4部分 ArrayList遍历方式</a><br><a href="#a5">第5部分 toArray()异常</a><br><a href="#a6">第6部分 ArrayList示例</a><br></span></span></p><br><p></p><br><p>&nbsp;</p><br><h3><span style="font-family: 黑体; font-size: 18pt; line-height: 1.5;"><a name="a1"></a>第1部分 ArrayList介绍</span></h3><br><p><span style="color: #000000;"><strong><span style="font-size: 16px;">ArrayList简介</span></strong></span></p><br><p><span style="font-size: 16px; color: #000000;">ArrayList 是一个<strong>数组队列</strong>，相当于 <strong>动态数组</strong>。与Java中的数组相比，它的容量能动态增长。它继承于AbstractList，实现了List, RandomAccess, Cloneable, java.io.Serializable这些接口。</span></p><br><p><span style="font-size: 16px; color: #000000;">ArrayList <em>继承了AbstractList，实现了List</em>。它是一个数组队列，提供了相关的添加、删除、修改、遍历等功能。</span><br><span style="font-size: 16px; color: #000000;">  ArrayList <em>实现了RandmoAccess接口，即提供了随机访问功能。</em>RandmoAccess是java中用来被List实现，为List提供快速访问功能的。在ArrayList中，我们即可以通过元素的序号快速获取元素对象；这就是快速随机访问。稍后，我们会比较List的“快速随机访问”和“通过Iterator迭代器访问”的效率。</span></p><br><p><span style="font-size: 16px; color: #000000;">ArrayList 实现了Cloneable接口，即覆盖了函数clone()，能被克隆。</span></p><br><p><span style="font-size: 16px; color: #000000;">ArrayList 实现java.io.Serializable接口，这意味着ArrayList支持序列化，能通过序列化去传输。</span></p><br><p>&nbsp;</p><br><p><span style="font-size: 16px; color: #000000;">和Vector不同，<span style="color: #ff0000;"><strong>ArrayList中的操作不是线程安全的</strong>！</span>所以，建议在单线程中才使用ArrayList，而在多线程中可以选择Vector或者CopyOnWriteArrayList。</span></p><br><p>&nbsp;</p><br><p><span style="color: #000000;"><strong><span style="font-size: 16px;">ArrayList构造函数</span></strong></span></p>
 
@@ -613,8 +415,6 @@
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">the first element is: 5</span><br><span class="line">Arraylist size=: 4</span><br><span class="line">ArrayList contains 3 is: false</span><br><span class="line">next is: 5</span><br><span class="line">next is: 10</span><br><span class="line">next is: 2</span><br><span class="line">next is: 4</span><br><span class="line">str: 5</span><br><span class="line">str: 10</span><br><span class="line">str: 2</span><br><span class="line">str: 4</span><br><span class="line">ArrayList is empty: true</span><br></pre></td></tr></table></figure>
 <p>&nbsp;</p><br><p>&nbsp;</p><br><p><span style="font-size: 16px;"><span style="color: #000000;">转载来源：<a href="http://www.cnblogs.com/skywang12345/p/3308556.html" target="_blank" rel="noopener"><span style="color: #000000;">http://www.cnblogs.com/skywang12345/p/3308556.html</span></a></span><br></span></p>
-          
-        
       
     </div>
     
@@ -623,9 +423,46 @@
 
 	<div>
       
+         <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+      
     </div>
 	
 	<div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2018/11/27/转-Java-集合之-ArrayList详细介绍-源码解析-和使用示例/">[转]Java 集合之 ArrayList详细介绍(源码解析)和使用示例</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 小小马里奥 的个人博客">小小马里奥</a></p>
+  <p><span>发布时间:</span>2018年11月27日 - 08:11</p>
+  <p><span>最后更新:</span>2018年11月27日 - 09:11</p>
+  <p><span>原始链接:</span><a href="/2018/11/27/转-Java-集合之-ArrayList详细介绍-源码解析-和使用示例/" title="[转]Java 集合之 ArrayList详细介绍(源码解析)和使用示例">http://jcxzzy.github.io/2018/11/27/转-Java-集合之-ArrayList详细介绍-源码解析-和使用示例/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://jcxzzy.github.io/2018/11/27/转-Java-集合之-ArrayList详细介绍-源码解析-和使用示例/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
       
     </div>
 	
@@ -639,232 +476,32 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jcxzzy.github.io/2018/08/12/firstblog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="小小马里奥">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/zy.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小小马里奥的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/12/firstblog/" itemprop="url">超详细的使用Github+Hexo搭建属于自己的博客</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-12T15:40:34+08:00">
-                2018-08-12
-              </time>
+              <a href="/2018/08/12/firstblog/" rel="next" title="超详细的使用Github+Hexo搭建属于自己的博客">
+                <i class="fa fa-chevron-left"></i> 超详细的使用Github+Hexo搭建属于自己的博客
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
+              <a href="/2018/11/27/[转]Java中的static关键字解析/" rel="prev" title="[转]Java中的static关键字解析">
+                [转]Java中的static关键字解析 <i class="fa fa-chevron-right"></i>
+              </a>
             
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1,506
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  5
-                </span>
-              
-            </div>
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h2 id="Github是什么"><a href="#Github是什么" class="headerlink" title="Github是什么"></a>Github是什么</h2><p>gitHub是一个面向开源及私有软件项目的托管平台，因为只支持git 作为唯一的版本库格式进行托管，故名gitHub。这里用到Github，是因为我们需要通过Github得到自己的博客网站域名，而且需要使用gitHub同步我们个人博客的相关文件</p>
-<h2 id="Hexo是什么"><a href="#Hexo是什么" class="headerlink" title="Hexo是什么"></a>Hexo是什么</h2><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
-<h2 id="话不多说咱们进入正题"><a href="#话不多说咱们进入正题" class="headerlink" title="话不多说咱们进入正题"></a>话不多说咱们进入正题</h2><h3 id="准备相关的工具"><a href="#准备相关的工具" class="headerlink" title="准备相关的工具"></a>准备相关的工具</h3><p>1， Git： 我这里放的是<a href="https://git-scm.com/download/win" target="_blank" rel="noopener">Windows版本</a>，如果要在其他系统上部署请到<a href="https://git-scm.com/" target="_blank" rel="noopener">Git官网</a>下载</p>
-<p>2， Node.js：<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a>下载安装程序</p>
-<p>打开cmd命令行(win+r 输入cmd回车)分别执行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br><span class="line">git --version</span><br></pre></td></tr></table></figure>
-<p>得到如下相对应的版本信息说明安装成功<br><img src="/2018/08/12/firstblog/1.png" alt="这里写图片描述"> </p>
-<h2 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h2><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>打开Git Bash（在任意文件夹下单击右键即可看到Git Bash），输入以下命令安装Hexo</p>
-<pre><code class="bash">$ npm install -g hexo-cli
-</code></pre>
-<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>打开Git Bash，输入命令</p>
-<pre><code class="bash">$ hexo init [folder]
-</code></pre>
-<p>例  <code>$ hexo init hexotext</code></p>
-<p>[folder]代表的是你的hexo文件夹名，如果不写，就默认在当前文件夹初始化。 </p>
-<p>然后进入你的hexo文件夹</p>
-<pre><code class="bash">$ <span class="built_in">cd</span> [folder]
-</code></pre>
-<h2 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h2><p>需要执行generate命令生成静态文件，才能部署到服务器</p>
-<pre><code class="bash">$ hexo g
-</code></pre>
-<h2 id="启动服务器"><a href="#启动服务器" class="headerlink" title="启动服务器"></a>启动服务器</h2><p>由于还没有配置Github，所以我们先部署到本地服务器</p>
-<pre><code class="bash">$ hexo s
-</code></pre>
-<p>在浏览器上输入<code>http://localhost:4000/</code> 即可看到下图<br><img src="/2018/08/12/firstblog/2.png" alt="这里写图片描述"><br>若没有出现也不要着急可能是你的4000的端口被占用，可以重设端口</p>
-<pre><code class="bash">$ hexo -p 5000 server
-</code></pre>
-<p>打开浏览器输入<code>http://localhost:5000/</code> 即可看到你的初始博客</p>
-<h2 id="Github配置"><a href="#Github配置" class="headerlink" title="Github配置"></a>Github配置</h2><h3 id="注册Github账号"><a href="#注册Github账号" class="headerlink" title="注册Github账号"></a>注册Github账号</h3><p>进入<a href="https://github.com" target="_blank" rel="noopener">Github官网</a><br>点击<img src="/2018/08/12/firstblog/3.png" alt="这里写图片描述">进入注册界面<br>注意：注册Github的时候一定要选择一个合适的名字，因为后来博客网站的域名也会用到这个名字。虽然Github用户名支持后期修改，但是还是会带来很多不必要的麻烦。</p>
-<h3 id="创建Github仓库"><a href="#创建Github仓库" class="headerlink" title="创建Github仓库"></a>创建Github仓库</h3><p>创建与你的Github用户名相对应的Github Page仓库，格式必须是username.github.io。（如图）<br><img src="/2018/08/12/firstblog/4.png" alt="这里写图片描述"></p>
-<h3 id="建立关联"><a href="#建立关联" class="headerlink" title="建立关联"></a>建立关联</h3><p>进入你刚创建的仓库，复制仓库的地址<br><img src="/2018/08/12/firstblog/5.png" alt="这里写图片描述"><br><img src="/2018/08/12/firstblog/6.png" alt="这里写图片描述"><br>打开hexo文件夹下的_config.yml文件，拉倒最下面，修改deploy为以下代码，repository后面的是你的仓库地址</p>
-<pre><code class="bash">deploy:
-  <span class="built_in">type</span>: git
-  repo: git@github.com:jcxzzy/jcxzzy.github.io.git
-  branch: master
-</code></pre>
-<p>  这里有一个需要注意的地方是所有的配置“:”符号后面都要带空格，否则执行本地测试直接失败</p>
-<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><p>在Git Bash输入以下命令部署到Github Page</p>
-<pre><code class="bash">$ hexo d
-</code></pre>
-<p>然后在浏览器输入username.github.io就可以看到你的博客啦，如：<a href="https://jcxzzy.github.io/">jcxzzy.github.io</a></p>
-<p>以后进行文章或主题的更新需要三步</p>
-<p>清空缓存</p>
-<pre><code class="bash">$ hexo clean
-</code></pre>
-<p>生成静态文件</p>
-<pre><code class="bash">$ hexo g
-</code></pre>
-<p>部署</p>
-<pre><code class="bash">$ hexo d
-</code></pre>
-<p>到此你的博客已经正式上线了，下面介绍一些优化方案</p>
-<h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><p>现在我们已经看见个人博客的雏形了，但是现在的博客网页一点也不高大上。为了让它看起来更美观一些，我们可以为其更换主题<br>介绍一个强大的主题库可以在里面选择喜欢的主题进行更换：<a href="https://hexo.io/themes/" target="_blank" rel="noopener">https://hexo.io/themes/</a><br>这里分享一个NexT主题优化：<a href="https://www.jianshu.com/p/1f8107a8778c" target="_blank" rel="noopener">https://www.jianshu.com/p/1f8107a8778c</a></p>
-<h2 id="写作"><a href="#写作" class="headerlink" title="写作"></a>写作</h2><p>选择一个markdown编辑器，我觉得csdn自带的md编辑器就挺好用的。<br>写完之后直接导出到本地MarkDown格式，在本地找到后缀为.mb文件，把它复制到你hexo博客文件夹中 source 下的 _posts 中，默认只有一个 hello-world.md；<br>复制完之后然后使用文本编辑器打开它，在第一行加上title，内容自定，如</p>
-<pre><code class="bash">title：超详细的使用Github+Hexo搭建属于自己的博客
-</code></pre>
-<p>再将其发布就可以看到你发布的文章了</p>
-<h2 id="在不同电脑管理hexo博客"><a href="#在不同电脑管理hexo博客" class="headerlink" title="在不同电脑管理hexo博客"></a>在不同电脑管理hexo博客</h2><p>其实，这也是我在使用Hexo搭建博客遇到的一个问题，如果我们检查自己博客在Github上的文件就会发现，github仓库里的文件和我们本地博客站点的文件夹是不同的，确切来说是少了很多内容。如果我们想在不同的电脑上管理自己的博客，就必须有源文件存在远端供我们随时下载、然后修改后重新部署到远端。</p>
-<p>我们要理解这样一个过程：hexo -d是把本地博客源文件生成的静态网页文件同步到github上，实现部署。但是博客网站的源文件仍需要我们自己保存。这里主要有两种思路可以选择：</p>
-<p>1.在github存放我们博客静态网页文件的仓库里另建分支brach，单独用于存放源文件。<br>2.将本地博客文件存放在码云上。</p>
-<p>这些都是关于git的操作，所以这里不用细说了。单对于这两种方法来说，我更倾向于第二种。因为毕竟这些都是我们搭建个人博客的源文件，将来还要在网站上发表文章，很多数据都在这里。使用码云我们可以创建私有仓库，将这些源文件私有存放更好一些，而且源文件和静态博客网页文件分开存放也避免使用分支频繁切换。</p>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>一个简单的博客至此就搭建完毕了，如果你想让你的博客变得与众不同这就需要你继续学习探索了，其实搭建一个博客是很简单的事情，坚持总结和写作才是最难的事，让我们一起加油吧。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-	<div>
-      
-    </div>
-	
-	<div>
-      
-    </div>
-	
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -874,10 +511,17 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b6d0258b54734e4" async = "async" ></script>
+</div>
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -885,6 +529,12 @@
 
 
           
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zODc2OC8xNTI5Ng=="></div>
+    </div>
+  
+
 
         </div>
         
@@ -905,8 +555,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -975,6 +634,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">第1部分 ArrayList介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">第2部分 ArrayList数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">第3部分 ArrayList源码解析(基于JDK1.6.0_45)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">第4部分 ArrayList遍历方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">第5部分 toArray()异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">7.</span> <span class="nav-text">第6部分 ArrayList示例</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1122,6 +797,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
@@ -1150,6 +829,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
