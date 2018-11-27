@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="&amp;nbsp; 概要 上一章，我们学习了Collection的架构。这一章开始，我们对Collection的具体实现类进行讲解；首先，讲解List，而List中ArrayList又最为常用。因此，本章我们讲解ArrayList。先对ArrayList有个整体认识，再学习它的源码，最后再通过例子来学习如何使用它。内容包括：第1部分 ArrayList简介第2部分 ArrayList数据结构第3部分 A">
+<meta name="description" content="&amp;nbsp; 概要 对Collection的具体实现类进行讲解；首先，讲解List，而List中ArrayList又最为常用。因此，本章我们讲解ArrayList。先对ArrayList有个整体认识，再学习它的源码，最后再通过例子来学习如何使用它。内容包括：第1部分 ArrayList简介第2部分 ArrayList数据结构第3部分 ArrayList源码解析(基于JDK1.6.0_45)第4部分">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[转]Java 集合之 ArrayList详细介绍(源码解析)和使用示例">
 <meta property="og:url" content="http://jcxzzy.github.io/2018/11/27/thirdblog/index.html">
 <meta property="og:site_name" content="小小马里奥的博客">
-<meta property="og:description" content="&amp;nbsp; 概要 上一章，我们学习了Collection的架构。这一章开始，我们对Collection的具体实现类进行讲解；首先，讲解List，而List中ArrayList又最为常用。因此，本章我们讲解ArrayList。先对ArrayList有个整体认识，再学习它的源码，最后再通过例子来学习如何使用它。内容包括：第1部分 ArrayList简介第2部分 ArrayList数据结构第3部分 A">
+<meta property="og:description" content="&amp;nbsp; 概要 对Collection的具体实现类进行讲解；首先，讲解List，而List中ArrayList又最为常用。因此，本章我们讲解ArrayList。先对ArrayList有个整体认识，再学习它的源码，最后再通过例子来学习如何使用它。内容包括：第1部分 ArrayList简介第2部分 ArrayList数据结构第3部分 ArrayList源码解析(基于JDK1.6.0_45)第4部分">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/jcxzzy/jcxzzy.github.io/master/2018/08/12/firstblog/7.jpg">
-<meta property="og:updated_time" content="2018-11-27T05:04:01.998Z">
+<meta property="og:updated_time" content="2018-11-27T05:20:21.629Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[转]Java 集合之 ArrayList详细介绍(源码解析)和使用示例">
-<meta name="twitter:description" content="&amp;nbsp; 概要 上一章，我们学习了Collection的架构。这一章开始，我们对Collection的具体实现类进行讲解；首先，讲解List，而List中ArrayList又最为常用。因此，本章我们讲解ArrayList。先对ArrayList有个整体认识，再学习它的源码，最后再通过例子来学习如何使用它。内容包括：第1部分 ArrayList简介第2部分 ArrayList数据结构第3部分 A">
+<meta name="twitter:description" content="&amp;nbsp; 概要 对Collection的具体实现类进行讲解；首先，讲解List，而List中ArrayList又最为常用。因此，本章我们讲解ArrayList。先对ArrayList有个整体认识，再学习它的源码，最后再通过例子来学习如何使用它。内容包括：第1部分 ArrayList简介第2部分 ArrayList数据结构第3部分 ArrayList源码解析(基于JDK1.6.0_45)第4部分">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/jcxzzy/jcxzzy.github.io/master/2018/08/12/firstblog/7.jpg">
 
 
@@ -342,7 +342,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3,996
+                  3,977
                 </span>
               
 
@@ -381,7 +381,7 @@
       
         <p><div id="cnblogs_post_body" class="blogpost-body"><p>&nbsp;</p></div></p>
 <p></p><h3><strong><span style="font-family: 黑体; font-size: 18pt; line-height: 1.5;">概要</span></strong></h3><p></p>
-<p><span style="font-size: 16px; color: #000000;">上一章，我们学习了Collection的架构。这一章开始，我们对Collection的具体实现类进行讲解；首先，讲解List，而List中ArrayList又最为常用。因此，本章我们讲解ArrayList。先对ArrayList有个整体认识，再学习它的源码，最后再通过例子来学习如何使用它。内容包括：<br><a href="#a1">第1部分 ArrayList简介</a><br><a href="#a2">第2部分 ArrayList数据结构</a><br><a href="#a3">第3部分 ArrayList源码解析(基于JDK1.6.0_45)</a><br><span><a href="#a4">第4部分 ArrayList遍历方式</a><br><a href="#a5">第5部分 toArray()异常</a><br><a href="#a6">第6部分 ArrayList示例</a><br></span></span></p><br><p></p><br><p>&nbsp;</p><br><h3><span style="font-family: 黑体; font-size: 18pt; line-height: 1.5;"><a name="a1"></a>第1部分 ArrayList介绍</span></h3><br><p><span style="color: #000000;"><strong><span style="font-size: 16px;">ArrayList简介</span></strong></span></p><br><p><span style="font-size: 16px; color: #000000;">ArrayList 是一个<strong>数组队列</strong>，相当于 <strong>动态数组</strong>。与Java中的数组相比，它的容量能动态增长。它继承于AbstractList，实现了List, RandomAccess, Cloneable, java.io.Serializable这些接口。</span></p><br><p><span style="font-size: 16px; color: #000000;">ArrayList <em>继承了AbstractList，实现了List</em>。它是一个数组队列，提供了相关的添加、删除、修改、遍历等功能。</span><br><span style="font-size: 16px; color: #000000;">  ArrayList <em>实现了RandmoAccess接口，即提供了随机访问功能。</em>RandmoAccess是java中用来被List实现，为List提供快速访问功能的。在ArrayList中，我们即可以通过元素的序号快速获取元素对象；这就是快速随机访问。稍后，我们会比较List的“快速随机访问”和“通过Iterator迭代器访问”的效率。</span></p><br><p><span style="font-size: 16px; color: #000000;">ArrayList 实现了Cloneable接口，即覆盖了函数clone()，能被克隆。</span></p><br><p><span style="font-size: 16px; color: #000000;">ArrayList 实现java.io.Serializable接口，这意味着ArrayList支持序列化，能通过序列化去传输。</span></p><br><p>&nbsp;</p><br><p><span style="font-size: 16px; color: #000000;">和Vector不同，<span style="color: #ff0000;"><strong>ArrayList中的操作不是线程安全的</strong>！</span>所以，建议在单线程中才使用ArrayList，而在多线程中可以选择Vector或者CopyOnWriteArrayList。</span></p><br><p>&nbsp;</p><br><p><span style="color: #000000;"><strong><span style="font-size: 16px;">ArrayList构造函数</span></strong></span></p>
+<p><span style="font-size: 16px; color: #000000;">对Collection的具体实现类进行讲解；首先，讲解List，而List中ArrayList又最为常用。因此，本章我们讲解ArrayList。先对ArrayList有个整体认识，再学习它的源码，最后再通过例子来学习如何使用它。内容包括：<br><a href="#a1">第1部分 ArrayList简介</a><br><a href="#a2">第2部分 ArrayList数据结构</a><br><a href="#a3">第3部分 ArrayList源码解析(基于JDK1.6.0_45)</a><br><span><a href="#a4">第4部分 ArrayList遍历方式</a><br><a href="#a5">第5部分 toArray()异常</a><br><a href="#a6">第6部分 ArrayList示例</a><br></span></span></p><br><p></p><br><p>&nbsp;</p><br><h3><span style="font-family: 黑体; font-size: 18pt; line-height: 1.5;"><a name="a1"></a>第1部分 ArrayList介绍</span></h3><br><p><span style="color: #000000;"><strong><span style="font-size: 16px;">ArrayList简介</span></strong></span></p><br><p><span style="font-size: 16px; color: #000000;">ArrayList 是一个<strong>数组队列</strong>，相当于 <strong>动态数组</strong>。与Java中的数组相比，它的容量能动态增长。它继承于AbstractList，实现了List, RandomAccess, Cloneable, java.io.Serializable这些接口。</span></p><br><p><span style="font-size: 16px; color: #000000;">ArrayList <em>继承了AbstractList，实现了List</em>。它是一个数组队列，提供了相关的添加、删除、修改、遍历等功能。</span><br><span style="font-size: 16px; color: #000000;">  ArrayList <em>实现了RandmoAccess接口，即提供了随机访问功能。</em>RandmoAccess是java中用来被List实现，为List提供快速访问功能的。在ArrayList中，我们即可以通过元素的序号快速获取元素对象；这就是快速随机访问。稍后，我们会比较List的“快速随机访问”和“通过Iterator迭代器访问”的效率。</span></p><br><p><span style="font-size: 16px; color: #000000;">ArrayList 实现了Cloneable接口，即覆盖了函数clone()，能被克隆。</span></p><br><p><span style="font-size: 16px; color: #000000;">ArrayList 实现java.io.Serializable接口，这意味着ArrayList支持序列化，能通过序列化去传输。</span></p><br><p>&nbsp;</p><br><p><span style="font-size: 16px; color: #000000;">和Vector不同，<span style="color: #ff0000;"><strong>ArrayList中的操作不是线程安全的</strong>！</span>所以，建议在单线程中才使用ArrayList，而在多线程中可以选择Vector或者CopyOnWriteArrayList。</span></p><br><p>&nbsp;</p><br><p><span style="color: #000000;"><strong><span style="font-size: 16px;">ArrayList构造函数</span></strong></span></p>
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 默认构造函数</span><br><span class="line">ArrayList()</span><br><span class="line">// capacity是ArrayList的默认容量大小。当由于增加数据导致容量不足时，容量会添加上一次容量大小的一半。</span><br><span class="line">ArrayList(int capacity)</span><br><span class="line"></span><br><span class="line">// 创建一个包含collection的ArrayList</span><br><span class="line">ArrayList(Collection&lt;? extends E&gt; collection)</span><br></pre></td></tr></table></figure>
 <p>&nbsp;</p><br><p><span style="color: #000000;"><strong><span style="font-size: 16px;">ArrayList的API</span></strong></span></p>
@@ -683,7 +683,7 @@
 
 
   <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3
-       <span class="post-count">Total Words:9.0k</span>
+       <span class="post-count">Total Words:8.9k</span>
    </div>
 
 

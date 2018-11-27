@@ -88,7 +88,7 @@
 <meta property="og:site_name" content="小小马里奥的博客">
 <meta property="og:description" content="话不多说直接上代码 123456789101112insert into student(ID,XM,ZJH,ZL,DJSJ,XYSJ)select rownum as ID,              dbms_random.string(&amp;apos;x&amp;apos;,2) as XM,              trunc(dbms_random.value(100000000000000000">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-27T04:46:00.462Z">
+<meta property="og:updated_time" content="2018-11-27T05:20:42.556Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="oracle快速生成上千万条测试数据">
 <meta name="twitter:description" content="话不多说直接上代码 123456789101112insert into student(ID,XM,ZJH,ZL,DJSJ,XYSJ)select rownum as ID,              dbms_random.string(&amp;apos;x&amp;apos;,2) as XM,              trunc(dbms_random.value(100000000000000000">
@@ -340,7 +340,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  613
+                  606
                 </span>
               
 
@@ -356,7 +356,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  2
                 </span>
               
             </div>
@@ -383,7 +383,7 @@
 <blockquote>
 <p>from xmltable(‘1 to xx’)<br>换成<br>from dual<br>connect by level &lt;= xx;</p>
 </blockquote>
-<p>例“level &lt;= 10”表示要生成10记录，但是connect by level有上限,如果超出上限，系统会报，”connect by level”内存不足，我试过100万条数据可以，但是再多就不行了，<br>2、利用rownum虚拟列生成递增的整数数据；<br>3、利用sysdate函数加一些简单运算来生成日期数据，本例中是每条记录的时间加1秒；<br>4、利用dbms_random.value函数生成随机的数值型数据，然后用trunc函数返回处理后的数值，其工作机制与ROUND函数极为类似，只是该函数不对指定小数前或后的部分做相应舍入选择处理，而统统截去，本例中是生成100000000000000000到999999999999999999之间的随机整数；<br>5、利用dbms_random.string函数生成随机的字符型数据，本例中是生成长度为2的随机字符串，字符串中可以包括字符或数字。<br>6、to_char(sysdate + rownum, ‘yyyy-mm-dd hh24:mi:ss’) 这里是转换为字符串，如果该字段的类型为TimeStamp时间戳，那这里可以改写一下方法，转换为时间戳 to_timestamp(sysdate + rownum, ‘yyyy-mm-dd hh24:mi:ss’)<br>7、使用了decode函数，decode函数的格式为：decode(条件,值1,返回值1,值2,返回值2,…值n,返回值n,缺省值)，使用trunc(dbms_random.value(1,3))随机产生数字1，2，3，再分别对应不同的返回值（返回值可以是数字，字符串，汉字等），即可实现随机插入汉字列。<br>8、systimestamp函数返回本机数据库上当前系统日期和时间(包括微秒和时区)。<br><strong>转载请注明出处：</strong></p>
+<p>例“level &lt;= 10”表示要生成10记录，但是connect by level有上限,如果超出上限，系统会报，”connect by level”内存不足，我试过100万条数据可以，但是再多就不行了，<br>2、利用rownum虚拟列生成递增的整数数据；<br>3、利用sysdate函数加一些简单运算来生成日期数据，本例中是每条记录的时间加1秒；<br>4、利用dbms_random.value函数生成随机的数值型数据，然后用trunc函数返回处理后的数值，其工作机制与ROUND函数极为类似，只是该函数不对指定小数前或后的部分做相应舍入选择处理，而统统截去，本例中是生成100000000000000000到999999999999999999之间的随机整数；<br>5、利用dbms_random.string函数生成随机的字符型数据，本例中是生成长度为2的随机字符串，字符串中可以包括字符或数字。<br>6、to_char(sysdate + rownum, ‘yyyy-mm-dd hh24:mi:ss’) 这里是转换为字符串，如果该字段的类型为TimeStamp时间戳，那这里可以改写一下方法，转换为时间戳 to_timestamp(sysdate + rownum, ‘yyyy-mm-dd hh24:mi:ss’)<br>7、使用了decode函数，decode函数的格式为：decode(条件,值1,返回值1,值2,返回值2,…值n,返回值n,缺省值)，使用trunc(dbms_random.value(1,3))随机产生数字1，2，3，再分别对应不同的返回值（返回值可以是数字，字符串，汉字等），即可实现随机插入汉字列。<br>8、systimestamp函数返回本机数据库上当前系统日期和时间(包括微秒和时区)。</p>
 
       
     </div>
@@ -413,7 +413,7 @@
   <p><span>本文标题:</span><a href="/2018/11/27/fourthblog/">oracle快速生成上千万条测试数据</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 小小马里奥 的个人博客">小小马里奥</a></p>
   <p><span>发布时间:</span>2018年11月27日 - 10:11</p>
-  <p><span>最后更新:</span>2018年11月27日 - 12:11</p>
+  <p><span>最后更新:</span>2018年11月27日 - 13:11</p>
   <p><span>原始链接:</span><a href="/2018/11/27/fourthblog/" title="oracle快速生成上千万条测试数据">http://jcxzzy.github.io/2018/11/27/fourthblog/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://jcxzzy.github.io/2018/11/27/fourthblog/"  aria-label="复制成功！"></i></span>
   </p>
@@ -624,7 +624,7 @@
 
 
   <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3
-       <span class="post-count">Total Words:9.0k</span>
+       <span class="post-count">Total Words:8.9k</span>
    </div>
 
 
