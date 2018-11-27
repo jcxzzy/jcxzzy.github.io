@@ -84,17 +84,17 @@
 <meta name="description" content="static关键字是很多朋友在编写代码和阅读代码时碰到的比较难以理解的一个关键字，也是各大公司的面试官喜欢在面试时问到的知识点之一。下面就先讲述一下static关键字的用法和平常容易误解的地方，最后列举了一些面试笔试中常见的关于static的考题。以下是本文的目录大纲：　　一.static关键字的用途　　二.static关键字的误区　　三.常见的笔试面试题　　若有不正之处，希望谅解并欢迎批评指">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[转]Java中的static关键字解析">
-<meta property="og:url" content="http://jcxzzy.github.io/2018/11/27/[转]Java中的static关键字解析/index.html">
+<meta property="og:url" content="http://jcxzzy.github.io/2018/11/27/secondblog/index.html">
 <meta property="og:site_name" content="小小马里奥的博客">
 <meta property="og:description" content="static关键字是很多朋友在编写代码和阅读代码时碰到的比较难以理解的一个关键字，也是各大公司的面试官喜欢在面试时问到的知识点之一。下面就先讲述一下static关键字的用法和平常容易误解的地方，最后列举了一些面试笔试中常见的关于static的考题。以下是本文的目录大纲：　　一.static关键字的用途　　二.static关键字的误区　　三.常见的笔试面试题　　若有不正之处，希望谅解并欢迎批评指">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/jcxzzy/jcxzzy.github.io/blob/jcxzzy-image/8.jpg">
-<meta property="og:image" content="https://github.com/jcxzzy/jcxzzy.github.io/blob/jcxzzy-image/9.jpg">
-<meta property="og:updated_time" content="2018-11-27T02:47:25.682Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/jcxzzy/jcxzzy.github.io/master/2018/08/12/firstblog/8.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/jcxzzy/jcxzzy.github.io/master/2018/08/12/firstblog/9.jpg">
+<meta property="og:updated_time" content="2018-11-27T05:07:21.246Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[转]Java中的static关键字解析">
 <meta name="twitter:description" content="static关键字是很多朋友在编写代码和阅读代码时碰到的比较难以理解的一个关键字，也是各大公司的面试官喜欢在面试时问到的知识点之一。下面就先讲述一下static关键字的用法和平常容易误解的地方，最后列举了一些面试笔试中常见的关于static的考题。以下是本文的目录大纲：　　一.static关键字的用途　　二.static关键字的误区　　三.常见的笔试面试题　　若有不正之处，希望谅解并欢迎批评指">
-<meta name="twitter:image" content="https://github.com/jcxzzy/jcxzzy.github.io/blob/jcxzzy-image/8.jpg">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jcxzzy/jcxzzy.github.io/master/2018/08/12/firstblog/8.jpg">
 
 
 
@@ -124,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="http://jcxzzy.github.io/2018/11/27/[转]Java中的static关键字解析/"/>
+  <link rel="canonical" href="http://jcxzzy.github.io/2018/11/27/secondblog/"/>
 
 
 
@@ -277,7 +277,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jcxzzy.github.io/2018/11/27/[转]Java中的static关键字解析/">
+    <link itemprop="mainEntityOfPage" href="http://jcxzzy.github.io/2018/11/27/secondblog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小小马里奥">
@@ -380,13 +380,13 @@
       
 
       
-        <p style="text-align: left;">　　static关键字是很多朋友在编写代码和阅读代码时碰到的比较难以理解的一个关键字，也是各大公司的面试官喜欢在面试时问到的知识点之一。下面就先讲述一下static关键字的用法和平常容易误解的地方，最后列举了一些面试笔试中常见的关于static的考题。以下是本文的目录大纲：</p><br><p style="text-align: left;">　　一.static关键字的用途</p><br><p style="text-align: left;">　　二.static关键字的误区</p><br><p style="text-align: left;">　　三.常见的笔试面试题</p><br><p style="text-align: left;">　　若有不正之处，希望谅解并欢迎批评指正。</p><br><h2 style="text-align: left;">一.static关键字的用途</h2><br><p style="text-align: left;">　　在《Java编程思想》P86页有这样一段话：</p><br><p style="text-align: left;">　　<span style="color: #0000ff;">“static方法就是没有this的方法。在static方法内部不能调用非静态方法，反过来是可以的。而且可以在没有创建任何对象的前提下，仅仅通过类本身来调用static方法。这实际上正是static方法的主要用途。”</span></p><br><p style="text-align: left;"><span style="color: #0000ff;">　　<span style="color: #000000;">这段话虽然只是说明了static方法的特殊之处，但是可以看出static关键字的基本作用，简而言之，一句话来描述就是：</span></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;">　　<span style="color: #ff0000;">方便在没有创建对象的情况下来进行调用（方法/变量）。</span></span></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;">　　<span style="color: #000000;">很显然，被static关键字修饰的方法或者变量不需要依赖于对象来进行访问，只要类被加载了，就可以通过类名去进行访问。</span></span></span></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">　　static可以用来修饰类的成员方法、类的成员变量，另外可以编写static代码块来优化程序性能。</span></span></span></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">1）static方法</span></span></span></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">　　static方法一般称作静态方法，由于静态方法不依赖于任何对象就可以进行访问，因此对于静态方法来说，是没有this的，因为它不依附于任何对象，既然都没有对象，就谈不上this了。并且由于这个特性，在静态方法中不能访问类的非静态成员变量和非静态成员方法，因为非静态成员方法/变量都是必须依赖具体的对象才能够被调用。</span></span></span></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">　　但是要注意的是，虽然在静态方法中不能访问非静态成员方法和非静态成员变量，但是在非静态成员方法中是可以访问静态成员方法/变量的。举个简单的例子：</span></span></span></span></p><br><p style="text-align: left;"><img src="https://github.com/jcxzzy/jcxzzy.github.io/blob/jcxzzy-image/8.jpg" alt=""></p><br><p style="text-align: left;">　　在上面的代码中，由于print2方法是独立于对象存在的，可以直接用过类名调用。假如说可以在静态方法中访问非静态方法/变量的话，那么如果在main方法中有下面一条语句：</p><br><p style="text-align: left;">　　MyObject.print2();</p><br><p style="text-align: left;">　　此时对象都没有，str2根本就不存在，所以就会产生矛盾了。同样对于方法也是一样，由于你无法预知在print1方法中是否访问了非静态成员变量，所以也禁止在静态成员方法中访问非静态成员方法。</p><br><p style="text-align: left;">　　而对于非静态成员方法，它访问静态成员方法/变量显然是毫无限制的。</p><br><p style="text-align: left;">　　因此，如果说想在不创建对象的情况下调用某个方法，就可以将这个方法设置为static。我们最常见的static方法就是main方法，至于为什么main方法必须是static的，现在就很清楚了。因为程序在执行main方法的时候没有创建任何对象，因此只有通过类名来访问。</p><br><p style="text-align: left;">　　<span style="color: #ff0000;">另外记住，关于构造器是否是static方法可参考：<a href="http://blog.csdn.net/qq_17864929/article/details/48006835" target="_blank" rel="noopener">http://blog.csdn.net/qq_17864929/article/details/48006835</a></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">2）static变量</span></span></span></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">　　static变量也称作静态变量，静态变量和非静态变量的区别是：静态变量被所有的对象所共享，在内存中只有一个副本，它当且仅当在类初次加载时会被初始化。而非静态变量是对象所拥有的，在创建对象的时候被初始化，存在多个副本，各个对象拥有的副本互不影响。</span></span></span></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">　　static成员变量的初始化顺序按照定义的顺序进行初始化。</span></span></span></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">3）static代码块</span></span></span></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">　　static关键字还有一个比较关键的作用就是 用来形成静态代码块以优化程序性能。static块可以置于类中的任何地方，类中可以有多个static块。在类初次被加载的时候，会按照static块的顺序来执行每个static块，并且只会执行一次。</span></span></span></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">　　为什么说static块可以用来优化程序性能，是因为它的特性:只会在类加载的时候执行一次。下面看个例子:</span></span></span></span></p>
+        <p style="text-align: left;">　　static关键字是很多朋友在编写代码和阅读代码时碰到的比较难以理解的一个关键字，也是各大公司的面试官喜欢在面试时问到的知识点之一。下面就先讲述一下static关键字的用法和平常容易误解的地方，最后列举了一些面试笔试中常见的关于static的考题。以下是本文的目录大纲：</p><br><p style="text-align: left;">　　一.static关键字的用途</p><br><p style="text-align: left;">　　二.static关键字的误区</p><br><p style="text-align: left;">　　三.常见的笔试面试题</p><br><p style="text-align: left;">　　若有不正之处，希望谅解并欢迎批评指正。</p><br><h2 style="text-align: left;">一.static关键字的用途</h2><br><p style="text-align: left;">　　在《Java编程思想》P86页有这样一段话：</p><br><p style="text-align: left;">　　<span style="color: #0000ff;">“static方法就是没有this的方法。在static方法内部不能调用非静态方法，反过来是可以的。而且可以在没有创建任何对象的前提下，仅仅通过类本身来调用static方法。这实际上正是static方法的主要用途。”</span></p><br><p style="text-align: left;"><span style="color: #0000ff;">　　<span style="color: #000000;">这段话虽然只是说明了static方法的特殊之处，但是可以看出static关键字的基本作用，简而言之，一句话来描述就是：</span></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;">　　<span style="color: #ff0000;">方便在没有创建对象的情况下来进行调用（方法/变量）。</span></span></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;">　　<span style="color: #000000;">很显然，被static关键字修饰的方法或者变量不需要依赖于对象来进行访问，只要类被加载了，就可以通过类名去进行访问。</span></span></span></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">　　static可以用来修饰类的成员方法、类的成员变量，另外可以编写static代码块来优化程序性能。</span></span></span></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">1）static方法</span></span></span></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">　　static方法一般称作静态方法，由于静态方法不依赖于任何对象就可以进行访问，因此对于静态方法来说，是没有this的，因为它不依附于任何对象，既然都没有对象，就谈不上this了。并且由于这个特性，在静态方法中不能访问类的非静态成员变量和非静态成员方法，因为非静态成员方法/变量都是必须依赖具体的对象才能够被调用。</span></span></span></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">　　但是要注意的是，虽然在静态方法中不能访问非静态成员方法和非静态成员变量，但是在非静态成员方法中是可以访问静态成员方法/变量的。举个简单的例子：</span></span></span></span></p><br><p style="text-align: left;"><img src="https://raw.githubusercontent.com/jcxzzy/jcxzzy.github.io/master/2018/08/12/firstblog/8.jpg" alt=""></p><br><p style="text-align: left;">　　在上面的代码中，由于print2方法是独立于对象存在的，可以直接用过类名调用。假如说可以在静态方法中访问非静态方法/变量的话，那么如果在main方法中有下面一条语句：</p><br><p style="text-align: left;">　　MyObject.print2();</p><br><p style="text-align: left;">　　此时对象都没有，str2根本就不存在，所以就会产生矛盾了。同样对于方法也是一样，由于你无法预知在print1方法中是否访问了非静态成员变量，所以也禁止在静态成员方法中访问非静态成员方法。</p><br><p style="text-align: left;">　　而对于非静态成员方法，它访问静态成员方法/变量显然是毫无限制的。</p><br><p style="text-align: left;">　　因此，如果说想在不创建对象的情况下调用某个方法，就可以将这个方法设置为static。我们最常见的static方法就是main方法，至于为什么main方法必须是static的，现在就很清楚了。因为程序在执行main方法的时候没有创建任何对象，因此只有通过类名来访问。</p><br><p style="text-align: left;">　　<span style="color: #ff0000;">另外记住，关于构造器是否是static方法可参考：<a href="http://blog.csdn.net/qq_17864929/article/details/48006835" target="_blank" rel="noopener">http://blog.csdn.net/qq_17864929/article/details/48006835</a></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">2）static变量</span></span></span></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">　　static变量也称作静态变量，静态变量和非静态变量的区别是：静态变量被所有的对象所共享，在内存中只有一个副本，它当且仅当在类初次加载时会被初始化。而非静态变量是对象所拥有的，在创建对象的时候被初始化，存在多个副本，各个对象拥有的副本互不影响。</span></span></span></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">　　static成员变量的初始化顺序按照定义的顺序进行初始化。</span></span></span></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">3）static代码块</span></span></span></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">　　static关键字还有一个比较关键的作用就是 用来形成静态代码块以优化程序性能。static块可以置于类中的任何地方，类中可以有多个static块。在类初次被加载的时候，会按照static块的顺序来执行每个static块，并且只会执行一次。</span></span></span></span></p><br><p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">　　为什么说static块可以用来优化程序性能，是因为它的特性:只会在类加载的时候执行一次。下面看个例子:</span></span></span></span></p>
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Person&#123;</span><br><span class="line">    private Date birthDate;</span><br><span class="line">     </span><br><span class="line">    public Person(Date birthDate) &#123;</span><br><span class="line">        this.birthDate = birthDate;</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    boolean isBornBoomer() &#123;</span><br><span class="line">        Date startDate = Date.valueOf(&quot;1946&quot;);</span><br><span class="line">        Date endDate = Date.valueOf(&quot;1964&quot;);</span><br><span class="line">        return birthDate.compareTo(startDate)&gt;=0 &amp;&amp; birthDate.compareTo(endDate) &lt; 0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">　　isBornBoomer是用来这个人是否是1946-1964年出生的，而每次isBornBoomer被调用的时候，都会生成startDate和birthDate两个对象，造成了空间浪费，如果改成这样效率会更好：</span></span></span></span></p>
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Person&#123;</span><br><span class="line">    private Date birthDate;</span><br><span class="line">    private static Date startDate,endDate;</span><br><span class="line">    static&#123;</span><br><span class="line">        startDate = Date.valueOf(&quot;1946&quot;);</span><br><span class="line">        endDate = Date.valueOf(&quot;1964&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    public Person(Date birthDate) &#123;</span><br><span class="line">        this.birthDate = birthDate;</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    boolean isBornBoomer() &#123;</span><br><span class="line">        return birthDate.compareTo(startDate)&gt;=0 &amp;&amp; birthDate.compareTo(endDate) &lt; 0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">　　因此，很多时候会将一些只需要进行一次的初始化操作都放在static代码块中进行。</span></span></span></span></p><br><h2 style="text-align: left;">二.static关键字的误区</h2><br><p style="text-align: left;">1.static关键字会改变类中成员的访问权限吗？</p><br><p style="text-align: left;">　　有些初学的朋友会将java中的static与C/C++中的static关键字的功能混淆了。在这里只需要记住一点：与C/C++中的static不同，Java中的static关键字不会影响到变量或者方法的作用域。在Java中能够影响到访问权限的只有private、public、protected（包括包访问权限）这几个关键字。看下面的例子就明白了：</p><br><p style="text-align: left;"><img src="https://github.com/jcxzzy/jcxzzy.github.io/blob/jcxzzy-image/9.jpg" alt=""></p><br><p style="text-align: left;">　　提示错误”Person.age 不可视”，这说明static关键字并不会改变变量和方法的访问权限。</p><br><p style="text-align: left;">2.能通过this访问静态成员变量吗？</p><br><p style="text-align: left;">　　虽然对于静态方法来说没有this，那么在非静态方法中能够通过this访问静态成员变量吗？先看下面的一个例子，这段代码输出的结果是什么？</p>
+<p style="text-align: left;"><span style="color: #0000ff;"><span style="color: #000000;"><span style="color: #ff0000;"><span style="color: #000000;">　　因此，很多时候会将一些只需要进行一次的初始化操作都放在static代码块中进行。</span></span></span></span></p><br><h2 style="text-align: left;">二.static关键字的误区</h2><br><p style="text-align: left;">1.static关键字会改变类中成员的访问权限吗？</p><br><p style="text-align: left;">　　有些初学的朋友会将java中的static与C/C++中的static关键字的功能混淆了。在这里只需要记住一点：与C/C++中的static不同，Java中的static关键字不会影响到变量或者方法的作用域。在Java中能够影响到访问权限的只有private、public、protected（包括包访问权限）这几个关键字。看下面的例子就明白了：</p><br><p style="text-align: left;"><img src="https://raw.githubusercontent.com/jcxzzy/jcxzzy.github.io/master/2018/08/12/firstblog/9.jpg" alt=""></p><br><p style="text-align: left;">　　提示错误”Person.age 不可视”，这说明static关键字并不会改变变量和方法的访问权限。</p><br><p style="text-align: left;">2.能通过this访问静态成员变量吗？</p><br><p style="text-align: left;">　　虽然对于静态方法来说没有this，那么在非静态方法中能够通过this访问静态成员变量吗？先看下面的一个例子，这段代码输出的结果是什么？</p>
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class Main &#123;　　</span><br><span class="line">    static int value = 33;</span><br><span class="line"> </span><br><span class="line">    public static void main(String[] args) throws Exception&#123;</span><br><span class="line">        new Main().printValue();</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    private void printValue()&#123;</span><br><span class="line">        int value = 3;</span><br><span class="line">        System.out.println(this.value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>输出结果：</p>
@@ -449,12 +449,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2018/11/27/[转]Java中的static关键字解析/">[转]Java中的static关键字解析</a></p>
+  <p><span>本文标题:</span><a href="/2018/11/27/secondblog/">[转]Java中的static关键字解析</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 小小马里奥 的个人博客">小小马里奥</a></p>
   <p><span>发布时间:</span>2018年11月27日 - 10:11</p>
-  <p><span>最后更新:</span>2018年11月27日 - 10:11</p>
-  <p><span>原始链接:</span><a href="/2018/11/27/[转]Java中的static关键字解析/" title="[转]Java中的static关键字解析">http://jcxzzy.github.io/2018/11/27/[转]Java中的static关键字解析/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://jcxzzy.github.io/2018/11/27/[转]Java中的static关键字解析/"  aria-label="复制成功！"></i></span>
+  <p><span>最后更新:</span>2018年11月27日 - 13:11</p>
+  <p><span>原始链接:</span><a href="/2018/11/27/secondblog/" title="[转]Java中的static关键字解析">http://jcxzzy.github.io/2018/11/27/secondblog/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://jcxzzy.github.io/2018/11/27/secondblog/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -492,7 +492,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/27/转-Java-集合之-ArrayList详细介绍-源码解析-和使用示例/" rel="next" title="[转]Java 集合之 ArrayList详细介绍(源码解析)和使用示例">
+              <a href="/2018/11/27/thirdblog/" rel="next" title="[转]Java 集合之 ArrayList详细介绍(源码解析)和使用示例">
                 <i class="fa fa-chevron-left"></i> [转]Java 集合之 ArrayList详细介绍(源码解析)和使用示例
               </a>
             
@@ -501,6 +501,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/27/fourthblog/" rel="prev" title="oracle快速生成上千万条测试数据">
+                oracle快速生成上千万条测试数据 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -589,7 +593,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -688,7 +692,7 @@
 
 
   <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3
-       <span class="post-count">Total Words:8.3k</span>
+       <span class="post-count">Total Words:9.0k</span>
    </div>
 
 
