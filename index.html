@@ -274,6 +274,382 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jcxzzy.github.io/2018/12/05/fifthblog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小小马里奥">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/zy.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小小马里奥的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/05/fifthblog/" itemprop="url">在oracle中通过身份证号获取出生日期，性别</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-05T08:35:45+08:00">
+                2018-12-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,311
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>首先弄清身份证18位的构成（这里只讲18位的 ）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>位数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第1、2位数字</td>
+<td>表示所在省份的代码</td>
+</tr>
+<tr>
+<td>第3、4位数字</td>
+<td>表示所在城市的代码</td>
+</tr>
+<tr>
+<td>第5、6位数字</td>
+<td>表示所在区县的代码</td>
+</tr>
+<tr>
+<td>第7~14位数字</td>
+<td>表示出生年、月、日（1到9的月份和日用01到09表示）</td>
+</tr>
+<tr>
+<td>第15、16位数字</td>
+<td>表示所在地的派出所的代码</td>
+</tr>
+<tr>
+<td>第17位数字</td>
+<td>表示性别，奇数表示男性，偶数表示女性</td>
+</tr>
+<tr>
+<td>第18位数字</td>
+<td>是校检码，是随计算机的随机产生， 用来检验身份证的正确性。校检码可以是0~9的数字，当校验码为10时，则在身份证上用X代替显示，以符合国家公民身份证要求标准。</td>
+</tr>
+</tbody>
+</table>
+<p>我们要用的就是第7~14位和第17位，来获取出生日期和性别<br>先来看一下sql和查询结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select substr(&apos;123456198909210248&apos;,7,8) AS BRITH,</span><br><span class="line">       regexp_replace(</span><br><span class="line">        regexp_substr(substr(&apos;123456198909210248&apos;,17,1 ),&apos;^\d*[13579]$&apos;) ,&apos;^\d*[13579]$&apos;,&apos;男&apos;</span><br><span class="line">        )||regexp_replace(</span><br><span class="line">        regexp_substr(substr(&apos;123456198909210248&apos;,17,1 ),&apos;^\d*[02468]$&apos;) ,&apos;^\d*[02468]$&apos;,&apos;女&apos;</span><br><span class="line">        )AS SEX</span><br><span class="line">from dual</span><br></pre></td></tr></table></figure></p>
+<p>查询结果：<br><img src="https://img-blog.csdnimg.cn/20181127143457203.png" alt="在这里插入图片描述"><br>让我们一起来看看sql代码：<br>1、substr函数 格式： substr(string string, int a, int b)<br>       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1)string 需要截取的字符串<br>       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2)a截取字符串的开始位置（注：当a等于0或1时，都是从第一位开始截取）<br>       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3)b 要截取的字符串的长度<br>       而这里substr(‘123456198909210248’,7,8) 就表示截取证件号的第7~14位数字即出生日期<br>2、再看一下正则式</p>
+<blockquote>
+<p> ^\d*[13579]$ </p>
+</blockquote>
+<p>我们逐个了解各个字符的含义</p>
+<table>
+<thead>
+<tr>
+<th>字符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>^</td>
+<td>匹配一个字符串的开始。如果与“m” 的match_parameter一起使用，则匹配表达式中任何位置的行的开头。</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>匹配一个数字字符。</td>
+</tr>
+<tr>
+<td>*</td>
+<td>匹配零个或多个。</td>
+</tr>
+<tr>
+<td>[ ]</td>
+<td>用于指定一个匹配列表，您尝试匹配列表中的任何一个字符。</td>
+</tr>
+<tr>
+<td>$</td>
+<td>匹配字符串的结尾。如果与“m” 的match_parameter一起使用，则匹配表达式中任何位置的行的末尾。</td>
+</tr>
+</tbody>
+</table>
+<p>这个式子就表示匹配10以内的奇数，同理</p>
+<blockquote>
+<p>^\d*[02468]$ </p>
+</blockquote>
+<p>就表示匹配10以内的偶数<br>3、regexp_substr(expression, regexp) –返回满足条件的字符或字符串，</p>
+<blockquote>
+<p>regexp_substr(substr(‘123456198909210248’,17,1 ),’^\d*[13579]$’)</p>
+</blockquote>
+<p>就表示只返回奇数（偶数的只返回偶数）<br>4、 regexp_replace(expression, regexp, replacement) –将expression中的按regexp匹配到的部分用replacement代替.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">regexp_replace(</span><br><span class="line">        regexp_substr(substr(&apos;123456198909210248&apos;,17,1 ),&apos;^\d*[13579]$&apos;) ,&apos;^\d*[13579]$&apos;,&apos;男&apos;</span><br><span class="line">        )</span><br></pre></td></tr></table></figure>
+<p>就表示若为奇数返回男，若为偶数返回空，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">regexp_replace(</span><br><span class="line">        regexp_substr(substr(&apos;123456198909210248&apos;,17,1 ),&apos;^\d*[02468]$&apos;) ,&apos;^\d*[02468]$&apos;,&apos;女&apos;</span><br><span class="line">        )AS SEX</span><br></pre></td></tr></table></figure></p>
+<p>就表示若为偶数返回女，若为奇数返回空<br>将这两个用 || 拼接起来就能实现若为奇数返回男，若为偶数返回女<br>5、常用的正则式字符</p>
+<table>
+<thead>
+<tr>
+<th>字符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>^</td>
+<td>匹配一个字符串的开始。如果与“m” 的match_parameter一起使用，则匹配表达式中任何位置的行的开头。</td>
+</tr>
+<tr>
+<td>$</td>
+<td>匹配字符串的结尾。如果与“m” 的match_parameter一起使用，则匹配表达式中任何位置的行的末尾。</td>
+</tr>
+<tr>
+<td>*</td>
+<td>匹配零个或多个。</td>
+</tr>
+<tr>
+<td>+</td>
+<td>匹配一个或多个出现。</td>
+</tr>
+<tr>
+<td>？</td>
+<td>匹配零次或一次出现。</td>
+</tr>
+<tr>
+<td>。</td>
+<td>匹配任何字符，除了空。</td>
+</tr>
+<tr>
+<td>[ ]</td>
+<td>用于指定一个匹配列表，您尝试匹配列表中的任何一个字符。</td>
+</tr>
+<tr>
+<td>[^]</td>
+<td>用于指定一个不匹配的列表，您尝试匹配除列表中的字符以外的任何字符。</td>
+</tr>
+<tr>
+<td>( )</td>
+<td>用于将表达式分组为一个子表达式。</td>
+</tr>
+<tr>
+<td>{M}</td>
+<td>匹配m次。</td>
+</tr>
+<tr>
+<td>{M，}</td>
+<td>至少匹配m次。</td>
+</tr>
+<tr>
+<td>{M，N}</td>
+<td>至少匹配m次，但不多于n次。</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>n是1到9之间的数字。在遇到\ n之前匹配在（）内找到的第n个子表达式。</td>
+</tr>
+<tr>
+<td>[ . . ]</td>
+<td>匹配一个可以多于一个字符的整理元素。</td>
+</tr>
+<tr>
+<td>[:]</td>
+<td>匹配字符类。</td>
+</tr>
+<tr>
+<td>[==]</td>
+<td>匹配等价类。</td>
+</tr>
+<tr>
+<td>\d</td>
+<td>匹配一个数字字符。</td>
+</tr>
+<tr>
+<td>\D</td>
+<td>匹配一个非数字字符。</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>匹配包括下划线的任何单词字符。</td>
+</tr>
+<tr>
+<td>\W</td>
+<td>匹配任何非单词字符。</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>匹配任何空白字符，包括空格，制表符，换页符等等。</td>
+</tr>
+<tr>
+<td>\S</td>
+<td>匹配任何非空白字符。</td>
+</tr>
+<tr>
+<td>\A</td>
+<td>在换行符之前匹配字符串的开头或匹配字符串的末尾。</td>
+</tr>
+<tr>
+<td>\Z</td>
+<td>匹配字符串的末尾。</td>
+</tr>
+<tr>
+<td>*?</td>
+<td>匹配前面的模式零次或多次发生。</td>
+</tr>
+<tr>
+<td>+?</td>
+<td>匹配前面的模式一个或多个事件。</td>
+</tr>
+<tr>
+<td>??</td>
+<td>匹配前面的模式零次或一次出现。</td>
+</tr>
+<tr>
+<td>{N}?</td>
+<td>匹配前面的模式n次。</td>
+</tr>
+<tr>
+<td>{N，}？</td>
+<td>匹配前面的模式至少n次。</td>
+</tr>
+<tr>
+<td>{N，M}？</td>
+<td>匹配前面的模式至少n次，但不超过m次。</td>
+</tr>
+</tbody>
+</table>
+<p>6、常用正则表达式<br>    <table border="1"><tr><th>用途</th><th>表达式</th></tr><tr><td>用户名</td><td>/^[a-z0-9_-]{3,16}$/</td></tr><tr><td>密码</td><td>/^[a-z0-9_-]{6,18}$/</td></tr><tr><td>十六进制</td><td>/^#?([a-f0-9]{6}|[a-f0-9]{3})$/</td></tr><tr><td>电子邮箱</td><td>    /^([a-z0-9_.-]+)@([\da-z.-]+).([a-z.]{2,6})$/ <br>/^[a-z\d]+(.[a-z\d]+)<em>@(<a href="-[\da-z]">\da-z</a>?)+(.{1,2}[a-z]+)+$/</em></td></tr><tr><td>URL</td><td>/^(https?:\/\/)?([\da-z.-]+).([a-z.]{2,6})([\/\w .-])<em>\/?$/</em></td></tr><tr><td>IP地址</td><td>/((2[0-4]\d|25[0-5]|[01]?\d\d?).){3}(2[0-4]\d|25[0-5]|[01]?\d\d?)/<br>/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/</td></tr><tr><td>HTML标签 </td><td>/^&lt;([a-z]+)([^&lt;]+)(?:&gt;(.<em>)&lt;\/\1&gt;|\s+\/&gt;)$/</em></td></tr><tr><td>删除代码\注释</td><td>(?&lt;!http:|\S)//.$</td></tr><tr><td>Unicode编码中的汉字范围</td><td>/^[\u2E80-\u9FFF]+$/</td></tr></table></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+	<div>
+      
+    </div>
+	
+	<div>
+      
+    </div>
+	
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://jcxzzy.github.io/2018/11/27/fourthblog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1090,7 +1466,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1173,7 +1549,7 @@
 
 
   <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3
-       <span class="post-count">Total Words:8.9k</span>
+       <span class="post-count">Total Words:10.2k</span>
    </div>
 
 
