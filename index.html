@@ -274,6 +274,632 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jcxzzy.github.io/2019/01/09/sixthblog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小小马里奥">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/zy.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小小马里奥的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/09/sixthblog/" itemprop="url">对linux命令的学习总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-09T16:19:32+08:00">
+                2019-01-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,973
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="1-一些简单的linux命令"><a href="#1-一些简单的linux命令" class="headerlink" title="1.一些简单的linux命令"></a>1.一些简单的linux命令</h4><p><strong><em>$passwd</em></strong><br>修改用户登陆口令 </p>
+<p><strong><em>$date</em></strong><br>显示当前日期和时间</p>
+<p><strong><em>$cal</em></strong><br>显示指定年份或指定月份的日历表</p>
+<p><strong><em>$login</em></strong><br>登录提示</p>
+<p><strong><em>$help</em></strong><br>通过显示一系列的菜单选择和提问，引导用户学校大多数常用的linux命令</p>
+<p><strong><em>$man</em></strong><br>显示在线系统文档的内容</p>
+<p><strong><em>$who</em></strong><br>列出当前系统所有用户的登录名、终端号和登录时间</p>
+<table>
+<thead>
+<tr>
+<th>命令键</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$who -q 或 $who –count</td>
+<td>快速who命令 ;仅显示用户名和用户数</td>
+</tr>
+<tr>
+<td>$who -H 或 $who –heading</td>
+<td>在每一列上显示列标题</td>
+</tr>
+<tr>
+<td>$who -b</td>
+<td>显示系统的启动日期和时间</td>
+</tr>
+<tr>
+<td>$who –help</td>
+<td>显示使用方法信息</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-vi编辑器的命令"><a href="#2-vi编辑器的命令" class="headerlink" title="2.vi编辑器的命令"></a>2.vi编辑器的命令</h4><p><strong><em>$vi myfirst</em></strong><br>使用vi编辑器编辑名为myfirst的文件，若文件不存在则创建一个名为myfirst的文件</p>
+<p><strong><em>切换模式键</em></strong></p>
+<table>
+<thead>
+<tr>
+<th>命令键</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>i</td>
+<td>在光标的左侧输入正文</td>
+</tr>
+<tr>
+<td>I</td>
+<td>在光标所在行的开头输入正文</td>
+</tr>
+<tr>
+<td>a</td>
+<td>在光标的右侧输入正文</td>
+</tr>
+<tr>
+<td>A</td>
+<td>在光标所在行的末尾输入正文</td>
+</tr>
+<tr>
+<td>o</td>
+<td>在光标所在行的下一行增添新行，并且光标位于新行的开头</td>
+</tr>
+<tr>
+<td>O</td>
+<td>在光标所在行的上一行增添新行，并且光标位于新行的开头</td>
+</tr>
+</tbody>
+</table>
+<p><strong><em>文本修改键</em></strong></p>
+<table>
+<thead>
+<tr>
+<th>命令键</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x</td>
+<td>删除光标位置指定的字符</td>
+</tr>
+<tr>
+<td>dd</td>
+<td>删除光标所在的行</td>
+</tr>
+<tr>
+<td>u</td>
+<td>撤销最近的修改</td>
+</tr>
+<tr>
+<td>U</td>
+<td>撤销对当前行所做的所有修改</td>
+</tr>
+<tr>
+<td>r</td>
+<td>替换光标位置上的一个字符</td>
+</tr>
+<tr>
+<td>R</td>
+<td>替换从光标位置开始的字符，同时改变vi到文本输入模式</td>
+</tr>
+<tr>
+<td>.(点)</td>
+<td>重复上一次的修改</td>
+</tr>
+</tbody>
+</table>
+<p><strong><em>光标移动键</em></strong></p>
+<table>
+<thead>
+<tr>
+<th>命令键</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>h或[left]</td>
+<td>将光标向左移动一格</td>
+</tr>
+<tr>
+<td>j或[down]</td>
+<td>将光标向下移动一格</td>
+</tr>
+<tr>
+<td>k或[Up]</td>
+<td>将光标向上移动一格</td>
+</tr>
+<tr>
+<td>l或[right]</td>
+<td>将光标向右移动一格</td>
+</tr>
+<tr>
+<td>$</td>
+<td>将光标移到当前行的行尾</td>
+</tr>
+<tr>
+<td>w</td>
+<td>将光标向右移动一个字</td>
+</tr>
+<tr>
+<td>b</td>
+<td>将光标向左移动一个字</td>
+</tr>
+<tr>
+<td>e</td>
+<td>将光标移到字尾</td>
+</tr>
+<tr>
+<td>0(零)</td>
+<td>将光标移到当前行的行首</td>
+</tr>
+<tr>
+<td>[Return]</td>
+<td>将光标移到下一行的行首</td>
+</tr>
+<tr>
+<td>[Spacebar]</td>
+<td>将光标向右移动一格</td>
+</tr>
+<tr>
+<td>[Backspace]</td>
+<td>将光标向左移动一格</td>
+</tr>
+</tbody>
+</table>
+<p><strong><em>退出命令</em></strong></p>
+<table>
+<thead>
+<tr>
+<th>命令键</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>wq</td>
+<td>保存文件，退出vi编辑器</td>
+</tr>
+<tr>
+<td>w</td>
+<td>保存文件，但不退出vi编辑器</td>
+</tr>
+<tr>
+<td>q</td>
+<td>退出vi编辑器</td>
+</tr>
+<tr>
+<td>q!</td>
+<td>不保存文件，退出vi编辑器</td>
+</tr>
+<tr>
+<td>ZZ</td>
+<td>保存文件，退出vi编辑器</td>
+</tr>
+</tbody>
+</table>
+<p><strong><em>搜索命令</em></strong></p>
+<table>
+<thead>
+<tr>
+<th>命令键</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/</td>
+<td>向前搜索指定的字符串</td>
+</tr>
+<tr>
+<td>?</td>
+<td>向后搜索指定的字符串</td>
+</tr>
+</tbody>
+</table>
+<h4 id="3-Linux文件系统"><a href="#3-Linux文件系统" class="headerlink" title="3.Linux文件系统"></a>3.Linux文件系统</h4><p><strong><em>linux的文件结构</em></strong></p>
+<ul>
+<li>bin 用户二进制文件</li>
+<li>sbin 系统二进制文件</li>
+<li>home 用户的家目录</li>
+<li>root 系统管理员的家目录</li>
+<li>usr 用户程序</li>
+<li>lib 系统库</li>
+<li>var 变量文件</li>
+<li>etc 配置文件</li>
+<li>dev 设备文件</li>
+<li>tmp 临时文件</li>
+<li>proc 进程信息</li>
+<li>srv 服务数据</li>
+<li>mnt 挂在目录</li>
+<li>boot 引导加载程序文件</li>
+</ul>
+<p><strong><em>$cd</em></strong><br>将当前目录改变到另一个目录</p>
+<p><strong><em>$pwd</em></strong><br>显示用户工作目录或指定的其他目录的路径名</p>
+<p><strong><em>$mkdir</em></strong><br>在工作目录或指定的其他目录下创建一个新的目录</p>
+<p><strong><em>$rmdir</em></strong><br>删除指定的目录。该目录必须为空</p>
+<p><strong><em>$cat</em></strong><br>连接/显示文件</p>
+<p><strong><em>$|</em></strong><br>管道操作符</p>
+<p><strong><em>$rm</em></strong><br>删除当前目录或指定的其他目录下的文件</p>
+<table>
+<thead>
+<tr>
+<th>命令键</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$rm -i 或 –interactive</td>
+<td>删除文件前，给出确认信息</td>
+</tr>
+<tr>
+<td>$rm -r 或 –recursive</td>
+<td>删除指定的目录及目录下的所有文件和子目录</td>
+</tr>
+<tr>
+<td>$rm –help</td>
+<td>显示帮助信息</td>
+</tr>
+</tbody>
+</table>
+<p><strong><em>$ls</em></strong><br>列出当前目录或指定的其他目录的内容</p>
+<table>
+<thead>
+<tr>
+<th>命令键</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$ls -a 或 $ls –all</td>
+<td>列出所有文件，包括隐藏文件</td>
+</tr>
+<tr>
+<td>$ls -C 或 $ls –fomat=vertical –format=horizontal</td>
+<td>用多列格式列出文件，按列排序</td>
+</tr>
+<tr>
+<td>$ls -F 或 $ls –classify</td>
+<td>在每个目录文件名后加(/),在可执行文件后加(*)</td>
+</tr>
+<tr>
+<td>$ls -I 或 $ls –format=single-column</td>
+<td>以长格式列出文件，显示文件的详细信息</td>
+</tr>
+<tr>
+<td>$ls -m 或 $ls –format=commas</td>
+<td>按页宽列文件，以逗号隔开</td>
+</tr>
+<tr>
+<td>$ls -p</td>
+<td>在目录文件名后加(/)</td>
+</tr>
+<tr>
+<td>$ls -r 或 $ls –reverse</td>
+<td>以字母反序列出文件</td>
+</tr>
+<tr>
+<td>$ls -R 或 $ls –recursive</td>
+<td>循环列出子目录的内容</td>
+</tr>
+<tr>
+<td>$ls -s 或 $ls –size</td>
+<td>以块为单位显示每个文件的大小</td>
+</tr>
+<tr>
+<td>$ls -x 或 $ls –format=horizontal –format=across</td>
+<td>以多列格式列出文件，按行排序</td>
+</tr>
+<tr>
+<td>$ls –help</td>
+<td>显示帮助信息</td>
+</tr>
+</tbody>
+</table>
+<h4 id="4-Linux文件系统高级操作"><a href="#4-Linux文件系统高级操作" class="headerlink" title="4.Linux文件系统高级操作"></a>4.Linux文件系统高级操作</h4><p><strong><em>$cp</em></strong><br>从当前目录或其他目录复制文件到另一个目录下</p>
+<p><strong><em>$cut</em></strong><br>从文件中取出指定的列或域</p>
+<table>
+<thead>
+<tr>
+<th>命令键</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$cut -f 或 $cut –fields</td>
+<td>指定域位置</td>
+</tr>
+<tr>
+<td>$cut -c 或 $cut –characters</td>
+<td>指定字符位置</td>
+</tr>
+<tr>
+<td>$cut -d 或 $cut –delimiter</td>
+<td>指定域分隔符(分界符)</td>
+</tr>
+<tr>
+<td>$cut –help</td>
+<td>显示帮助也并退出</td>
+</tr>
+<tr>
+<td>$cut –version</td>
+<td>显示版本信息并退出</td>
+</tr>
+</tbody>
+</table>
+<p><strong><em>$find</em></strong><br>定位在层次目录中匹配给定规则的文件</p>
+<table>
+<thead>
+<tr>
+<th>命令键</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$find -name filename</td>
+<td>根据给定的文件名filename查找文件</td>
+</tr>
+<tr>
+<td>$find -size+n</td>
+<td>查找文件大小为n的文件</td>
+</tr>
+<tr>
+<td>$find file type</td>
+<td>查找指定类型的文件</td>
+</tr>
+<tr>
+<td>$find -atime+n</td>
+<td>查找n天以前访问的文件</td>
+</tr>
+<tr>
+<td>$find -mtime+n</td>
+<td>查找n天以前修改的文件</td>
+</tr>
+<tr>
+<td>$find newer filename</td>
+<td>查找比filename更近期更新的文件</td>
+</tr>
+<tr>
+<td>$find -print</td>
+<td>显示找到的每个文件的路径名</td>
+</tr>
+<tr>
+<td>$find -exec command\;</td>
+<td>对找到的文件执行command</td>
+</tr>
+<tr>
+<td>$find -ok command\;</td>
+<td>执行command之前要求确认</td>
+</tr>
+</tbody>
+</table>
+<p><strong><em>$head</em></strong><br>显示指定文件的头部。</p>
+<p><strong><em>$In</em></strong><br>在已存在的文件和另一个文件名或目录直接创建链接。这样可以使文件有一个以上的名字</p>
+<p><strong><em>$more</em></strong><br>以一次显示一屏的方式显示文件。这个命令对读大文件很有用</p>
+<p><strong><em>$mv</em></strong><br>给文件改名或将文件从一个位置移到另一个位置</p>
+<p><strong><em>$wc</em></strong><br>计算指定文件中的字符数、字数或行数</p>
+<table>
+<thead>
+<tr>
+<th>命令键</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$wc -l 或 $wc –lines</td>
+<td>报告行数</td>
+</tr>
+<tr>
+<td>$wc -w 或 $wc –words</td>
+<td>报告字数</td>
+</tr>
+<tr>
+<td>$wc -c 或 $wc -chars</td>
+<td>报告字符数</td>
+</tr>
+<tr>
+<td>$wc –help</td>
+<td>显示帮助页并退出</td>
+</tr>
+<tr>
+<td>$wc –version</td>
+<td>显示版本信息并退出</td>
+</tr>
+</tbody>
+</table>
+<p><strong><em>$tail</em></strong><br>显示指定文件的最后部分(尾部)</p>
+<h4 id="5-Linux中shell的使用"><a href="#5-Linux中shell的使用" class="headerlink" title="5.Linux中shell的使用"></a>5.Linux中shell的使用</h4><p><strong><em>$alias</em></strong><br>创建命令的别名</p>
+<p><strong><em>$echo</em></strong><br>在输出设备上显示其参数输出</p>
+<p><strong><em>$fc</em></strong><br>可以列出、编辑和重新执行以前输入的存储在history文件中的命令</p>
+<p><strong><em>$grep</em></strong><br>在文件中搜索指定的样式</p>
+<p><strong><em>$history</em></strong><br>保存用户在会话中所输入的命令列表</p>
+<p><strong><em>$kill</em></strong><br>结束一个不需要或失控的进程。用户需指定进程的ID号。进程的ID号为0表示结束所有与终端相关的进程</p>
+<p><strong><em>$nohup</em></strong><br>用户退出系统时不终止后台程序</p>
+<p><strong><em>$ps</em></strong><br>显示所有与终端相关的进程ID</p>
+<table>
+<thead>
+<tr>
+<th>命令键</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$ps -a</td>
+<td>显示所有活动进程的状态，而不仅仅是用户进程</td>
+</tr>
+<tr>
+<td>$ps -f</td>
+<td>显示信息的完整列表，包括完整的命令行</td>
+</tr>
+</tbody>
+</table>
+<p><strong><em>$r</em></strong><br>重复执行最后一条命令或history文件中的命令</p>
+<p><strong><em>$set</em></strong><br>在输出设备上先试试环境/shell变量。</p>
+<p><strong><em>$unset</em></strong><br>取消不需要的变量</p>
+<p><strong><em>$sleep</em></strong><br>使进程休眠(等待)指定的时间，以秒计</p>
+<p><strong><em>$sort</em></strong><br>用不同规格将文本文件中的内容排序</p>
+<p><strong><em>$tee</em></strong><br>分离输出。一份显示在输出终端上，另一份保存在文件中</p>
+<p><strong><em>$chmod</em></strong><br>改变选项字母指定的用户类型对某特定文件的访问权限。用户类型有：u(用户/所有者)、g(同组用户)、o(其他用户)和a(所有用户)。访问权限有：r(读)、w(写)、x(执行)</p>
+<p><strong><em>$exit</em></strong></p>
+<p>终止当前的shell程序。也可以返回一个状态码(RC)来指示程序执行的成功与否。如果用户在$提示下输入该命令，它将终止用户登录shell并使用户退出系统</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+	<div>
+      
+    </div>
+	
+	<div>
+      
+    </div>
+	
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://jcxzzy.github.io/2018/12/05/fifthblog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1466,7 +2092,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1530,7 +2156,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -1549,7 +2175,7 @@
 
 
   <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3
-       <span class="post-count">Total Words:10.2k</span>
+       <span class="post-count">Total Words:12.2k</span>
    </div>
 
 

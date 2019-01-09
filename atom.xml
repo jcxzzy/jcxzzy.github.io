@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jcxzzy.github.io/"/>
-  <updated>2018-12-05T00:57:25.414Z</updated>
+  <updated>2019-01-09T08:24:59.650Z</updated>
   <id>http://jcxzzy.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>对linux命令的学习总结</title>
+    <link href="http://jcxzzy.github.io/2019/01/09/sixthblog/"/>
+    <id>http://jcxzzy.github.io/2019/01/09/sixthblog/</id>
+    <published>2019-01-09T08:19:32.000Z</published>
+    <updated>2019-01-09T08:24:59.650Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;1-一些简单的linux命令&quot;&gt;&lt;a href=&quot;#1-一些简单的linux命令&quot; class=&quot;headerlink&quot; title=&quot;1.一些简单的linux命令&quot;&gt;&lt;/a&gt;1.一些简单的linux命令&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;&lt;em&gt;$passwd&lt;/e
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>在oracle中通过身份证号获取出生日期，性别</title>
