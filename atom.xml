@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jcxzzy.github.io/"/>
-  <updated>2019-01-09T08:24:59.650Z</updated>
+  <updated>2019-01-28T00:53:43.833Z</updated>
   <id>http://jcxzzy.github.io/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>[转]46个Linux面试常见问题</title>
+    <link href="http://jcxzzy.github.io/2019/01/28/seventhblog/"/>
+    <id>http://jcxzzy.github.io/2019/01/28/seventhblog/</id>
+    <published>2019-01-28T00:46:32.000Z</published>
+    <updated>2019-01-28T00:53:43.833Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;div id=&quot;cnblogs_post_body&quot; class=&quot;blogpost-body&quot;&gt;&lt;p&gt;&lt;strong&gt;问题一：&lt;/strong&gt;&lt;/p&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;绝对路径用什么符号表示？当前目录、上层目录用什么表示？主目录用什么表示? 切换目录用什么命
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>对linux命令的学习总结</title>
